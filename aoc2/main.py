@@ -25,10 +25,10 @@ for line in inputlist:
     password = line.split()[2]
     if password[int(policymin)-1] == policy[1] and password[int(policymax)-1] != policy[1]:
         correctpasswords += 1
-        print(f"{policy} and {password}")
+        #print(f"{policy} and {password}")
     elif password[int(policymin)-1] != policy[1] and password[int(policymax)-1] == policy[1]:
         correctpasswords += 1
-        print(f"{policy} and {password}")
+        #print(f"{policy} and {password}")
 print("part 2:",correctpasswords)
 
 
