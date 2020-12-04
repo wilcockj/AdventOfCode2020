@@ -16,7 +16,7 @@ headers = {
 
 response = requests.get(f'http://adventofcode.com/2020/day/{x}/input', headers=headers, cookies=cookies)
 print(str(response.content[0:10],'utf-8'))
-with open(f'day{x}/input.txt', 'wb') as f:
-    if str(response.content[0:3],'utf-8') != "Ple":
-        f.write(response.content)
-        print("wrote to file")
+if str(response.content[0:3],'utf-8') != "Ple":
+    with open(f'day{x}/input.txt', 'wb') as f:
+            f.write(response.content)
+            print("wrote to file")
