@@ -65,11 +65,11 @@ for x in lod:
 
         
     
-valid = 0
+p1count = 0
 for x in lod:
     if all(k in x for k in keys):
         #print(x)
-        valid += 1
+        p1count += 1
 
-print("Part 1:",valid)
+print("Part 1:",p1count)
 print("Part 2:",p2count)
