@@ -1,10 +1,4 @@
 import fileinput
-import re
-
-
-def inrange(s, l, h):
-    return l <= int(s) <= h
-
 
 d = []
 for x in fileinput.input():
