@@ -8,6 +8,7 @@ for line in fileinput.input():
 baglist = []
 canholdgold = {}
 bagdict = {}
+testbagdict = {}
 parents = []
 bagnumberdict = {}
 # make dicitionary write if a bag can contain shiny gold
@@ -32,51 +33,71 @@ def recursivebagcount(bags, parents):
 
 def p1(inputlist):
     # make dictionary
-    for rule in inputlist:
-        parent, children = re.match(r'(.+?)s? contain (.+)', rule).groups()
-        children = re.findall(r'(\d) ([ a-z]+bag)?', children)
+    for x in range(10):
+        for rule in inputlist:
+            innerbags = []
+            parent, children = re.match(r'(.+?)s? contain (.+)', rule).groups()
+            children = re.findall(r'(\d) ([ a-z]+bag)?', children)
 
-        '''
-        outerbag = rule.split("bags")[0].strip()
-        baglist.append(outerbag)
-        innerbags = []
-        if rule.split("contain")[1].strip() == "no other bags.":
-            # print(rule)
-            canholdgold[outerbag] = 0
-        elif Counter(rule)[","] > 0:
-            innerbags = rule.split("contain")[1].split(",")
-            innerbags = [re.sub('\d', '', bag) for bag in innerbags]
-            innerbags = [re.sub('bag.|bags.|contain', '', bag)
-                         for bag in innerbags]
-            innerbags = [x.strip() for x in innerbags]
-            innerbags = [x.rstrip(" .") for x in innerbags]
-        else:
-            innerbags = rule.split("contain")[1]
-            innerbags = re.sub('\d|bags.|bag.', '', innerbags)
-            innerbags = innerbags.strip()
-            innerbags = [innerbags]
-        # print(outerbag,innerbags)
-        bagdict[outerbag] = innerbags
-        '''
+            '''
+            outerbag = rule.split("bags")[0].strip()
+            baglist.append(outerbag)
+            innerbags = []
+            if rule.split("contain")[1].strip() == "no other bags.":
+                # print(rule)
+                canholdgold[outerbag] = 0
+            elif Counter(rule)[","] > 0:
+                innerbags = rule.split("contain")[1].split(",")
+                innerbags = [re.sub('\d', '', bag) for bag in innerbags]
+                innerbags = [re.sub('bag.|bags.|contain', '', bag)
+                             for bag in innerbags]
+                innerbags = [x.strip() for x in innerbags]
+                innerbags = [x.rstrip(" .") for x in innerbags]
+            else:
+                innerbags = rule.split("contain")[1]
+                innerbags = re.sub('\d|bags.|bag.', '', innerbags)
+                innerbags = innerbags.strip()
+                innerbags = [innerbags]
+            # print(outerbag,innerbags)
+            bagdict[outerbag] = innerbags
+            '''
+            # print(parent)
+            # print(children)
+            for x in children:
+                innerbags.append(x[1])
+            if "shiny gold bag" in innerbags:
+                canholdgold[parent] = 1
+            for x in innerbags:
+                if x in canholdgold:
+                    if canholdgold[x] == 1:
+                        canholdgold[parent] = 1
 
-        if parent not in bagdict:
-            bagdict[parent] = []
+            if parent not in bagdict:
+                bagdict[parent] = []
 
-        for number, bag in children:
-            bagdict[parent].append(bag)
+            for number, bag in children:
+                bagdict[parent].append(bag)
 
-        if parent not in bagnumberdict:
-            bagnumberdict[parent] = {}
+            if parent not in bagnumberdict:
+                bagnumberdict[parent] = {}
 
-        for number, bag in children:
-            bagnumberdict[parent][bag] = number
+            for number, bag in children:
+                bagnumberdict[parent][bag] = number
 
-        # print(innerbags)
-        # print(len(canholdgold))
-        # print(len(canholdgold))
+            # print(innerbags)
+            # print(len(canholdgold))
+            # print(len(canholdgold))
+            goldholdcount = 0
+            for x in canholdgold.values():
+                if x == 1:
+                    goldholdcount += 1
+    goldholdcount = 0
+    for x in canholdgold.values():
+        if x == 1:
+            goldholdcount += 1
+    print(goldholdcount)
     parents = []
 
-    print(bagnumberdict)
     print(recursivebagcheck(bagdict, "shiny gold bag", parents))
     parents = {}
     print(recursivebagcount(bagnumberdict, "shiny gold bag") - 1)
