@@ -13,4 +13,11 @@ matches.group(1)
 re.compile('(?P<name>#[0-9,a-f]{6})')
 matches.group('name')
 
- 
+to find intersection between two strings
+
+set('asdasdadas') & set('dddddd')
+set makes unique so set('asdadad') becomes {'a','d'}
+
+from collections import Counter
+count = Counter('aaaa')
+count['a'] = 4
