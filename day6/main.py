@@ -21,17 +21,22 @@ for x in l:
     setlist.append(len(''.join(set(s))))
 print(sum(setlist))
 uniquecount = 0
+badcount = 0
 for y, x in enumerate(l):
     s = ''
     '''
+    print(x)
     for y in range(len(x) - 1):
         if y == 0:
+            print(x[y],x[y+1])
             s = ''.join(set(x[y]).intersection(x[y + 1]))
         else:
+            print(s,x[y+1])
             s = ''.join(set(s).intersection(x[y + 1]))
         print(s)
+    print(s)
+    badcount += (len(s))
     '''
-
     s = x[0]
     for y in x:
         s = set(s).intersection(y)
