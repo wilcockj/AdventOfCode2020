@@ -1,0 +1,16 @@
+from collections import defaultdict
+seats = defaultdict(lambda: [0]*8)
+seats[key][0-7] = int
+
+turn list into ints of only unique
+ints = set(int(i) for i in list)
+
+regex to select 6 numbers or letters a-f
+d = re.compile('(#[0-9,a-f]{6})')
+matches = d.match(text)
+matches.group(0) # gets whole match
+matches.group(1)
+re.compile('(?P<name>#[0-9,a-f]{6})')
+matches.group('name')
+
+ 
