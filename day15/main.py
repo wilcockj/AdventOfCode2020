@@ -11,10 +11,6 @@ print(inputlist[0])
 splitlist = inputlist[0].split(',')
 splitlist = [int(x) for x in splitlist]
 print(splitlist)
-whensaid = []
-for x in range(len(splitlist)):
-    whensaid.append([])
-print(whensaid)
 def p1(splitlist):
     num = 0
     #have to keep list of all nums and when they were said, perhaps dict
