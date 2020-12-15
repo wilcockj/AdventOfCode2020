@@ -4,6 +4,8 @@ from collections import defaultdict
 from collections import deque
 from functools import partial
 import re
+import time
+start_time = time.time()
 
 inputlist = []
 for line in fileinput.input():
@@ -34,7 +36,8 @@ def p1(splitlist):
     return num
 
 
-print("test 0,3,6:", p1([0, 3, 6]))
+#print("test 0,3,6:", p1([0, 3, 6]))
 # import timeit
 # print(timeit.timeit(lambda: p1([0,3,6]),number = 1))
 print("p1: ", p1(splitlist))
+print("--- %s seconds ---" % (time.time() - start_time))
