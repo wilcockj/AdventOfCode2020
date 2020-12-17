@@ -29,8 +29,11 @@ def addblankz(cubedict):
 inputlist = addsurroundingblank(inputlist)
 count = 0
 neighbors = []
+fourdneighbors = []
 for x,y,z in [(i,j,k) for i in (-1,0,1) for j in (-1,0,1) for k in (-1,0,1) if i != 0 or j != 0 or k != 0]:
         neighbors.append([x,y,z])
+for x,y,z,q in [(i,j,k,l) for i in (-1,0,1) for j in (-1,0,1) for k in (-1,0,1) for l in (-1,0,1) if l != 0 or i != 0 or j != 0 or k != 0]:
+        fourdneighbors.append([x,y,z,q])
 #add inactive layer on either side of cube slice
 #print(['.'*len(inputlist[0])]*len(inputlist))
 cubedict[0] = inputlist
